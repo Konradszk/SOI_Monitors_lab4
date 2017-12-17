@@ -34,7 +34,7 @@ void produce() {
         if(buffor.size()>3)
             m.signal(c3);
         m.leave();
-        sleep(5);
+        sleep(2);
         product++;
     }
 }
@@ -66,15 +66,16 @@ void consumAC(std::string id) {
             m.signal(cB);
             m.signal(cAC);
             min--;
+            if (max == 0) {
+                max++;
+                m.signal(cMax);
+            }
+            else{
+                max++;
+            }
         }
 
-        if (max == 0) {
-            max++;
-            m.signal(cMax);
-        }
-        else{
-            max++;
-        }
+
 
         m.leave();
         sleep(2);
@@ -111,15 +112,17 @@ void consumB() {
             m.signal(cB);
             m.signal(cAC);
             min--;
+
+            if (max == 0) {
+                max++;
+                m.signal(cMax);
+            }
+            else{
+                max++;
+            }
+
         }
 
-        if (max == 0) {
-            max++;
-            m.signal(cMax);
-        }
-        else{
-            max++;
-        }
 
         m.leave();
         sleep(2);
